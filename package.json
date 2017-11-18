@@ -1,0 +1,39 @@
+{
+  "name": "express-view-switcher",
+  "description": "View switcher for Express.js",
+  "version": "1.0.0",
+  "author": "shimataro",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shimataro/express-view-switcher.git"
+  },
+  "keywords": [
+    "express",
+    "multi-language",
+    "multi-device",
+    "pug"
+  ],
+  "main": "./dist/index.js",
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "build-js": "gulp build-js",
+    "watch": "gulp watch",
+    "watch-gulpfile": "gulp watch-gulpfile",
+    "watch-js": "gulp watch-js",
+    "postinstall": "npm run build",
+    "check-updates": "ncu"
+  },
+  "devDependencies": {
+    "npm-check-updates": "2.13.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0"
+  }
+}

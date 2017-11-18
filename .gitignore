@@ -1,0 +1,20 @@
+# temporary files
+*~
+*.tmp
+*.swp
+*.log
+
+# patch/merge
+*.orig
+*.rej
+
+# Node.js module files
+node_modules/
+
+/dist/
+
+# IDE files
+/.idea/
+/*.iml
+/nbproject/
+/.project
