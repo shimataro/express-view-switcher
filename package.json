@@ -15,6 +15,7 @@
     "pug"
   ],
   "main": "./dist/index.js",
+  "types": "./src/index.d.ts",
   "engines": {
     "node": ">= 4.0.0"
   },
@@ -28,6 +29,7 @@
     "check-updates": "ncu"
   },
   "devDependencies": {
+    "@types/express": "4.16.0",
     "npm-check-updates": "2.13.0"
   },
   "dependencies": {
