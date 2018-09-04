@@ -148,7 +148,7 @@ function _getDeviceCandidates(req)
         {
             if(userAgent.indexOf("Mobile") !== -1)
             {
-                return "smartphone;
+                return "smartphone";
             }
             else
             {
