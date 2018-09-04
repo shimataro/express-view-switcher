@@ -14,16 +14,20 @@
     "multi-device",
     "pug"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/index",
   "types": "./src/index.d.ts",
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">=2.0.0"
   },
   "scripts": {
-    "build": "npm run build-core",
+    "build": "run-p build:**",
+    "build:cjs": "npm run build-core",
+    "build:esm": "cross-env BABEL_ENV=esm npm run build-core -- --keep-file-extension",
     "build-core": "babel ./src --out-dir ./dist --source-maps",
-    "watch": "npm run build-core -- --watch",
+    "watch": "run-p watch:**",
+    "watch:cjs": "npm run build-core -- --watch",
+    "watch:esm": "cross-env BABEL_ENV=esm npm run build-core -- --keep-file-extension --watch",
     "postinstall": "npm run build",
     "check-updates": "ncu"
   },
@@ -35,6 +39,8 @@
     "@babel/cli": "7.0.0",
     "@babel/core": "7.0.0",
     "@babel/preset-env": "7.0.0",
-    "babel-plugin-add-module-exports": "0.3.3"
+    "babel-plugin-add-module-exports": "0.3.3",
+    "cross-env": "5.2.0",
+    "npm-run-all": "4.1.3"
   }
 }
