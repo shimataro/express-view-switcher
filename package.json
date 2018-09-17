@@ -33,13 +33,13 @@
   },
   "devDependencies": {
     "@types/express": "4.16.0",
-    "npm-check-updates": "2.13.0"
+    "npm-check-updates": "2.14.2"
   },
   "dependencies": {
     "@babel/cli": "7.0.0",
-    "@babel/core": "7.0.0",
+    "@babel/core": "7.0.1",
     "@babel/preset-env": "7.0.0",
-    "babel-plugin-add-module-exports": "0.3.3",
+    "babel-plugin-add-module-exports": "1.0.0",
     "cross-env": "5.2.0",
     "npm-run-all": "4.1.3"
   }
