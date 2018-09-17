@@ -1,13 +1,16 @@
 {
+  "comments": false,
   "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "node": "current"
-        },
-        "exclude": ["transform-regenerator"]
-      }
-    ]
-  ]
+    ["@babel/preset-env", {"targets": {"node": "current"}, "useBuiltIns": "usage", "exclude": ["transform-regenerator"]}]
+  ],
+  "plugins": [
+    ["add-module-exports"]
+  ],
+  "env": {
+    "esm": {
+      "presets": [
+        ["@babel/preset-env", {"targets": {"node": "current"}, "useBuiltIns": "usage", "exclude": ["transform-regenerator"], "modules": false}]
+      ]
+    }
+  }
 }
