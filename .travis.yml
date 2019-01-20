@@ -1,0 +1,22 @@
+# https://docs.travis-ci.com/user/languages/javascript-with-nodejs/
+# https://github.com/codecov/example-node
+
+language: "node_js"
+node_js:
+- "6"
+- "8"
+install:
+- "npm install"
+os:
+- "linux"
+- "osx"
+branches:
+  only:
+  - "master"
+  - "develop"
+  - /^v\d/
+cache:
+  directories:
+  - "node_modules"
+script:
+- "npm run verify"
