@@ -1,5 +1,10 @@
-express-view-switcher
-===
+# express-view-switcher
+
+[![Build Status (macOS)][image-build-macos]][link-build-macos]
+[![Build Status (Linux)][image-build-linux]][link-build-linux]
+[![Release][image-release]][link-release]
+[![Node.js version][image-engine]][link-engine]
+[![License][image-license]][link-license]
 
 switch the view root directory per request
 
@@ -7,12 +12,15 @@ switch the view root directory per request
 * [日本語](README.ja.md)
 
 ## How to install
+
 ```bash
 npm install -S express-view-switcher
 ```
 
 ## Usage
+
 ### 1: for multi-device support
+
 ```javascript
 import viewSwitcher from "express-view-switcher";
 
@@ -31,6 +39,7 @@ app.use(viewSwitcher((req) =>
 ```
 
 ### 2: for multi-language support
+
 ```javascript
 app.use(viewSwitcher((req) =>
 {
@@ -43,6 +52,7 @@ app.use(viewSwitcher((req) =>
 ```
 
 ### 3: for both multi-device + multi-language support
+
 ```javascript
 app.use(viewSwitcher((req) =>
 {
@@ -61,6 +71,7 @@ app.use(viewSwitcher((req) =>
 ```
 
 ## specify root directory
+
 ```javascript
 // if you're using a template engine that supports inclusion or inheritance, and can specify and set the base directory root key name in res.locals,
 // you can set this root key by passing it as the second argument
@@ -71,6 +82,7 @@ app.use(viewSwitcher((req) =>
 ```
 
 ## Practical example
+
 ```javascript
 app.use(viewSwitcher((req) =>
 {
@@ -161,7 +173,20 @@ function _getDeviceCandidates(req)
 ```
 
 ## License
+
 MIT License
 
 ## Copyright
+
 &copy; 2017 shimataro
+
+[image-build-macos]: https://img.shields.io/travis/shimataro/express-view-switcher/master.svg?label=macOS
+[link-build-macos]: https://travis-ci.org/shimataro/express-view-switcher
+[image-build-linux]: https://img.shields.io/travis/shimataro/express-view-switcher/master.svg?label=Linux
+[link-build-linux]: https://travis-ci.org/shimataro/express-view-switcher
+[image-release]: https://img.shields.io/github/release/shimataro/express-view-switcher.svg
+[link-release]: https://github.com/shimataro/express-view-switcher/releases
+[image-engine]: https://img.shields.io/node/v/express-view-switcher.svg
+[link-engine]: https://nodejs.org/
+[image-license]: https://img.shields.io/github/license/shimataro/express-view-switcher.svg
+[link-license]: ./LICENSE

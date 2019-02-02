@@ -10,15 +10,15 @@ const rootKeys = {
 
 /**
  * view-switcher middleware
- * @param {CandidatesListGenerator} candidatesListGenerator
- * @param {?string} rootKey
- * @return {ExpressMiddleware}
+ * @param {CandidatesListGenerator} candidatesListGenerator generator for candidates list
+ * @param {?string} rootKey root key for view engine
+ * @returns {ExpressMiddleware} middleware function
  */
 function viewSwitcher(candidatesListGenerator, rootKey = null)
 {
 	return (req, res, next) =>
 	{
-		const app = req.app;
+		const {app} = req;
 		const engine = app.get("view engine");
 		const baseDirs = _getBaseDirs(app);
 
@@ -30,7 +30,7 @@ function viewSwitcher(candidatesListGenerator, rootKey = null)
 		}
 
 		// replace render() method
-		const render = res.render;
+		const {render} = res;
 		res.render = (view, ...args) =>
 		{
 			const candidatesList = candidatesListGenerator(req);
@@ -43,7 +43,7 @@ function viewSwitcher(candidatesListGenerator, rootKey = null)
 					}
 
 					const newView = path.join(dir, view);
-					render.call(res, newView, ...args);
+					Reflect.apply(render, res, [newView, ...args]);
 				})
 				.catch(next);
 		};
@@ -54,8 +54,8 @@ function viewSwitcher(candidatesListGenerator, rootKey = null)
 
 /**
  * list up the view base directories
- * @param {ExpressApp} app
- * @return {TypeBaseDirectories}
+ * @param {ExpressApp} app application
+ * @returns {TypeBaseDirectories} directories
  */
 function _getBaseDirs(app)
 {
@@ -73,10 +73,10 @@ function _getBaseDirs(app)
 /**
  * get the directory of the view
  * @param {TypeBaseDirectories} baseDirs base directory
- * @param {TypeCandidatesList} candidatesList candidates
+ * @param {TypeCandidatesList} candidatesList list of candidates
  * @param {string} view view filename
  * @param {string} ext extension
- * @return {Promise.<TypeViewDirectory>}
+ * @returns {Promise.<TypeViewDirectory>} directories
  */
 async function _findViewDirectory(baseDirs, candidatesList, view, ext)
 {
@@ -93,32 +93,34 @@ async function _findViewDirectory(baseDirs, candidatesList, view, ext)
 		}
 	}
 	const baseDirsString = baseDirs.join(", ");
-	throw new Error(`"${view}" not found in "${baseDirsString}"`);
+	const err = new Error(`"${view}" not found in "${baseDirsString}"`);
+	err.name = "ViewNotFoundError";
+	throw err;
 }
 
 /**
  * view exists?
  * @param {string} fullView full path of view
  * @param {string} ext extension
- * @return {Promise.<boolean>} Yes/No
+ * @returns {Promise.<boolean>} Yes/No
  */
 function _viewExists(fullView, ext)
 {
 	return new Promise((resolve) =>
 	{
 		// search with extension
-		fs.access(`${fullView}.${ext}`, fs.R_OK, (err) =>
+		fs.access(`${fullView}.${ext}`, fs.R_OK, (err1) =>
 		{
-			if(err === null)
+			if(err1 === null)
 			{
 				// found
 				resolve(true);
 			}
 
 			// re-search without extension
-			fs.access(fullView, fs.R_OK, (err) =>
+			fs.access(fullView, fs.R_OK, (err2) =>
 			{
-				if(err === null)
+				if(err2 === null)
 				{
 					// found
 					resolve(true);
@@ -136,10 +138,11 @@ function _viewExists(fullView, ext)
 /**
  * generate candidate directories
  * @generator
- * @param {TypeCandidatesList} candidatesList
- * @yield {string}
+ * @param {TypeCandidatesList} candidatesList list of candidates
+ * @yield {string} directories
+ * @returns {void} no values
  */
-function* _generateDirs(candidatesList)
+function *_generateDirs(candidatesList)
 {
 	for(const pathArray of _generateDirsArray(candidatesList, 0))
 	{
@@ -150,11 +153,12 @@ function* _generateDirs(candidatesList)
 /**
  * generate array of candidate directories
  * @generator
- * @param {TypeCandidatesList} candidatesList
- * @param {int} index
- * @yield {Candidates}
+ * @param {TypeCandidatesList} candidatesList list of candidates
+ * @param {int} index index of candidatesList
+ * @yield {Candidates} candidates
+ * @returns {void} no values
  */
-function* _generateDirsArray(candidatesList, index)
+function *_generateDirsArray(candidatesList, index)
 {
 	if(index >= candidatesList.length)
 	{

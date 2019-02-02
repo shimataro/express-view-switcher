@@ -1,5 +1,8 @@
-express-view-switcher
-===
+# express-view-switcher
+
+[![Release][image-release]][link-release]
+[![Node.js version][image-engine]][link-engine]
+[![License][image-license]][link-license]
 
 リクエストごとにビューのルートディレクトリを切り替え
 
@@ -7,12 +10,15 @@ express-view-switcher
 * [日本語](README.ja.md)
 
 ## インストール
+
 ```bash
 npm install -S express-view-switcher
 ```
 
 ## 使い方
+
 ### 1: マルチデバイス対応
+
 ```javascript
 import viewSwitcher from "express-view-switcher";
 
@@ -31,6 +37,7 @@ app.use(viewSwitcher((req) =>
 ```
 
 ### 2: 多言語対応
+
 ```javascript
 app.use(viewSwitcher((req) =>
 {
@@ -43,6 +50,7 @@ app.use(viewSwitcher((req) =>
 ```
 
 ### 3: 多言語＋マルチデバイス
+
 ```javascript
 app.use(viewSwitcher((req) =>
 {
@@ -61,6 +69,7 @@ app.use(viewSwitcher((req) =>
 ```
 
 ## ベースディレクトリを指定
+
 ```javascript
 // 包含や継承をサポートしているテンプレートエンジンで、res.localsにベースディレクトリを指定できる場合は第2引数にキー名を指定する
 app.use(viewSwitcher((req) =>
@@ -70,6 +79,7 @@ app.use(viewSwitcher((req) =>
 ```
 
 ## 実践的な例
+
 ```javascript
 app.use(viewSwitcher((req) =>
 {
@@ -160,7 +170,16 @@ function _getDeviceCandidates(req)
 ```
 
 ## ライセンス
+
 MITライセンス
 
 ## 著作権
+
 &copy; 2017 shimataro
+
+[image-release]: https://img.shields.io/github/release/shimataro/maylily.svg
+[link-release]: https://github.com/shimataro/maylily/releases
+[image-engine]: https://img.shields.io/node/v/adjuster.svg
+[link-engine]: https://nodejs.org/
+[image-license]: https://img.shields.io/github/license/shimataro/maylily.svg
+[link-license]: ./LICENSE

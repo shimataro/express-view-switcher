@@ -1,7 +1,7 @@
 {
   "name": "express-view-switcher",
   "description": "View switcher for Express.js",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "author": "shimataro",
   "license": "MIT",
   "repository": {
@@ -28,17 +28,27 @@
     "watch": "run-p watch:**",
     "watch:cjs": "npm run build-core -- --watch",
     "watch:esm": "cross-env BABEL_ENV=esm npm run build-core -- --keep-file-extension --watch",
+    "verify": "run-p lint",
+    "lint": "run-p lint:*",
+    "lint:es": "eslint ./src --ext .mjs",
+    "lint:md": "markdownlint . --ignore ./node_modules",
+    "lint:yaml": "yamllint .*.yml *.yml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml",
     "postinstall": "npm run build",
     "check-updates": "ncu"
   },
   "devDependencies": {
-    "@types/express": "4.16.0",
-    "npm-check-updates": "2.15.0"
+    "@types/express": "4.16.1",
+    "babel-eslint": "10.0.1",
+    "eslint": "5.13.0",
+    "eslint-plugin-import": "2.16.0",
+    "markdownlint-cli": "0.13.0",
+    "npm-check-updates": "2.15.0",
+    "yaml-lint": "1.2.4"
   },
   "dependencies": {
-    "@babel/cli": "7.1.5",
-    "@babel/core": "7.1.6",
-    "@babel/preset-env": "7.1.6",
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.3.1",
     "babel-plugin-add-module-exports": "1.0.0",
     "cross-env": "5.2.0",
     "npm-run-all": "4.1.5"
