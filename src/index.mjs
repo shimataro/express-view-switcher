@@ -93,7 +93,9 @@ async function _findViewDirectory(baseDirs, candidatesList, view, ext)
 		}
 	}
 	const baseDirsString = baseDirs.join(", ");
-	throw new Error(`"${view}" not found in "${baseDirsString}"`);
+	const err = new Error(`"${view}" not found in "${baseDirsString}"`);
+	err.name = "ViewNotFoundError";
+	throw err;
 }
 
 /**
