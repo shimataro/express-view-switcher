@@ -1,5 +1,7 @@
 # express-view-switcher
 
+[![Build Status (macOS)][image-build-macos]][link-build-macos]
+[![Build Status (Linux)][image-build-linux]][link-build-linux]
 [![Release][image-release]][link-release]
 [![Node.js version][image-engine]][link-engine]
 [![License][image-license]][link-license]
@@ -177,9 +179,13 @@ MITライセンス
 
 &copy; 2017 shimataro
 
-[image-release]: https://img.shields.io/github/release/shimataro/maylily.svg
-[link-release]: https://github.com/shimataro/maylily/releases
-[image-engine]: https://img.shields.io/node/v/adjuster.svg
+[image-build-macos]: https://img.shields.io/travis/shimataro/express-view-switcher/master.svg?label=macOS
+[link-build-macos]: https://travis-ci.org/shimataro/express-view-switcher
+[image-build-linux]: https://img.shields.io/travis/shimataro/express-view-switcher/master.svg?label=Linux
+[link-build-linux]: https://travis-ci.org/shimataro/express-view-switcher
+[image-release]: https://img.shields.io/github/release/shimataro/express-view-switcher.svg
+[link-release]: https://github.com/shimataro/express-view-switcher/releases
+[image-engine]: https://img.shields.io/node/v/express-view-switcher.svg
 [link-engine]: https://nodejs.org/
-[image-license]: https://img.shields.io/github/license/shimataro/maylily.svg
+[image-license]: https://img.shields.io/github/license/shimataro/express-view-switcher.svg
 [link-license]: ./LICENSE
