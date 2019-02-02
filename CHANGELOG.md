@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+* `ViewNotFoundError` for "not found error"
+
 ## [1.1.1] - 2018-12-01
 
 ### Securiry
