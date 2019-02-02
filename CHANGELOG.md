@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.0.0] - 2019-02-03
+
 ### Changed
 
 * `ViewNotFoundError` for "not found error"
@@ -44,7 +46,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * first release!
 
-[Unreleased]: https://github.com/shimataro/express-view-switcher/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/shimataro/express-view-switcher/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/shimataro/express-view-switcher/compare/v1.1.1...v2.0.0
 [1.1.1]: https://github.com/shimataro/express-view-switcher/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/shimataro/express-view-switcher/compare/v1.0.2...v1.1.0
 [1.0.2]: https://github.com/shimataro/express-view-switcher/compare/v1.0.1...v1.0.2
