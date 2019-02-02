@@ -1,5 +1,9 @@
 # express-view-switcher
 
+[![Release][image-release]][link-release]
+[![Node.js version][image-engine]][link-engine]
+[![License][image-license]][link-license]
+
 リクエストごとにビューのルートディレクトリを切り替え
 
 * [English](README.md)
@@ -172,3 +176,10 @@ MITライセンス
 ## 著作権
 
 &copy; 2017 shimataro
+
+[image-release]: https://img.shields.io/github/release/shimataro/maylily.svg
+[link-release]: https://github.com/shimataro/maylily/releases
+[image-engine]: https://img.shields.io/node/v/adjuster.svg
+[link-engine]: https://nodejs.org/
+[image-license]: https://img.shields.io/github/license/shimataro/maylily.svg
+[link-license]: ./LICENSE
