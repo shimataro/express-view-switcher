@@ -1,7 +1,7 @@
 {
   "name": "express-view-switcher",
   "description": "View switcher for Express.js",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "author": "shimataro",
   "license": "MIT",
   "repository": {

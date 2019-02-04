@@ -180,10 +180,10 @@ MIT License
 
 &copy; 2017 shimataro
 
-[image-build-macos]: https://img.shields.io/travis/shimataro/express-view-switcher/master.svg?label=macOS
-[link-build-macos]: https://travis-ci.org/shimataro/express-view-switcher
-[image-build-linux]: https://img.shields.io/travis/shimataro/express-view-switcher/master.svg?label=Linux
-[link-build-linux]: https://travis-ci.org/shimataro/express-view-switcher
+[image-build-macos]: https://img.shields.io/travis/com/shimataro/express-view-switcher/master.svg?label=macOS
+[link-build-macos]: https://travis-ci.com/shimataro/express-view-switcher
+[image-build-linux]: https://img.shields.io/travis/com/shimataro/express-view-switcher/master.svg?label=Linux
+[link-build-linux]: https://travis-ci.com/shimataro/express-view-switcher
 [image-release]: https://img.shields.io/github/release/shimataro/express-view-switcher.svg
 [link-release]: https://github.com/shimataro/express-view-switcher/releases
 [image-engine]: https://img.shields.io/node/v/express-view-switcher.svg

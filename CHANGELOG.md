@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.0] - 2019-02-04
+
+### Changed
+
+* use default settings when view is missing
+
 ## [2.0.0] - 2019-02-03
 
 ### Changed
@@ -46,7 +52,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * first release!
 
-[Unreleased]: https://github.com/shimataro/express-view-switcher/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/shimataro/express-view-switcher/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/shimataro/express-view-switcher/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/shimataro/express-view-switcher/compare/v1.1.1...v2.0.0
 [1.1.1]: https://github.com/shimataro/express-view-switcher/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/shimataro/express-view-switcher/compare/v1.0.2...v1.1.0

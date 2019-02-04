@@ -1,8 +1,13 @@
 # temporary files
 *~
 *.tmp
+*.bak
 *.swp
 *.log
+
+# image caches
+.DS_Store
+Thumbs.db
 
 # patch/merge
 *.orig
@@ -11,7 +16,9 @@
 # Node.js module files
 node_modules/
 
+# auto-generated files
 /dist/
+/coverage/
 
 # IDE files
 /.idea/

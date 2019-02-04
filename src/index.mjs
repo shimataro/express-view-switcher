@@ -2,6 +2,10 @@ export default viewSwitcher;
 
 import path from "path";
 import fs from "fs";
+import util from "util";
+
+// use fs.promises on Node.js v10
+const access = util.promisify(fs.access);
 
 // root directory keys for view engine
 const rootKeys = {
@@ -35,8 +39,16 @@ function viewSwitcher(candidatesListGenerator, rootKey = null)
 		{
 			const candidatesList = candidatesListGenerator(req);
 			_findViewDirectory(baseDirs, candidatesList, view, engine)
-				.then(([basedir, dir]) =>
+				.then((result) =>
 				{
+					if(result === null)
+					{
+						// use default settings when view is missing
+						Reflect.apply(render, res, [view, ...args]);
+						return;
+					}
+
+					const [basedir, dir] = result;
 					if(rootKey_ !== null)
 					{
 						res.locals[rootKey_] = path.join(basedir, dir);
@@ -76,63 +88,62 @@ function _getBaseDirs(app)
  * @param {TypeCandidatesList} candidatesList list of candidates
  * @param {string} view view filename
  * @param {string} ext extension
- * @returns {Promise.<TypeViewDirectory>} directories
+ * @returns {Promise.<TypeViewDirectory | null>} directories
  */
 async function _findViewDirectory(baseDirs, candidatesList, view, ext)
 {
 	for(const baseDir of baseDirs)
 	{
-		for(const dir of _generateDirs(candidatesList))
+		for(const candidateDir of _generateDirs(candidatesList))
 		{
 			// return view directory if view file exists
-			const fullView = path.resolve(baseDir, dir, view);
-			if(await _viewExists(fullView, ext))
+			if(await _viewExists(baseDir, candidateDir, view, ext))
 			{
-				return [baseDir, dir];
+				return [baseDir, candidateDir];
 			}
 		}
 	}
-	const baseDirsString = baseDirs.join(", ");
-	const err = new Error(`"${view}" not found in "${baseDirsString}"`);
-	err.name = "ViewNotFoundError";
-	throw err;
+
+	// not found
+	return null;
 }
 
 /**
  * view exists?
- * @param {string} fullView full path of view
+ * @param {string} baseDir base directory
+ * @param {string} candidateDir candidate directory after baseDir
+ * @param {string} view view file
  * @param {string} ext extension
  * @returns {Promise.<boolean>} Yes/No
  */
-function _viewExists(fullView, ext)
+async function _viewExists(baseDir, candidateDir, view, ext)
 {
-	return new Promise((resolve) =>
-	{
-		// search with extension
-		fs.access(`${fullView}.${ext}`, fs.R_OK, (err1) =>
-		{
-			if(err1 === null)
-			{
-				// found
-				resolve(true);
-			}
+	const resolvedView = path.resolve(baseDir, candidateDir, view);
 
-			// re-search without extension
-			fs.access(fullView, fs.R_OK, (err2) =>
-			{
-				if(err2 === null)
-				{
-					// found
-					resolve(true);
-				}
-				else
-				{
-					// not found
-					resolve(false);
-				}
-			});
-		});
-	});
+	// search with extension
+	try
+	{
+		await access(`${resolvedView}.${ext}`, fs.R_OK);
+		return true;
+	}
+	catch(err)
+	{
+		// fall through
+	}
+
+	// re-search without extension
+	try
+	{
+		await access(resolvedView, fs.R_OK);
+		return true;
+	}
+	catch(err)
+	{
+		// fall through
+	}
+
+	// returns false when no views found
+	return false;
 }
 
 /**
