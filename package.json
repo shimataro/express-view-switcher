@@ -36,21 +36,21 @@
     "postinstall": "npm run build",
     "check-updates": "ncu"
   },
-  "devDependencies": {
-    "@types/express": "4.16.1",
-    "babel-eslint": "10.0.1",
-    "eslint": "5.13.0",
-    "eslint-plugin-import": "2.16.0",
-    "markdownlint-cli": "0.13.0",
-    "npm-check-updates": "2.15.0",
-    "yaml-lint": "1.2.4"
-  },
   "dependencies": {
     "@babel/cli": "7.2.3",
-    "@babel/core": "7.2.2",
-    "@babel/preset-env": "7.3.1",
+    "@babel/core": "7.3.4",
+    "@babel/preset-env": "7.3.4",
     "babel-plugin-add-module-exports": "1.0.0",
     "cross-env": "5.2.0",
     "npm-run-all": "4.1.5"
+  },
+  "devDependencies": {
+    "@types/express": "4.16.1",
+    "babel-eslint": "10.0.1",
+    "eslint": "5.15.3",
+    "eslint-plugin-import": "2.16.0",
+    "markdownlint-cli": "0.14.0",
+    "npm-check-updates": "^2",
+    "yaml-lint": "1.2.4"
   }
 }
