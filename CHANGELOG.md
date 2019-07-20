@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Others
+
+* Support Node.js v10/v12
+
 ## [3.1.0] - 2019-06-13
 
 ### Changed
