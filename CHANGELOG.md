@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-* support `"@types/express` v4.17.0
+* support `@types/express` v4.17.0
 
 ## [3.0.0] - 2019-02-04
 
