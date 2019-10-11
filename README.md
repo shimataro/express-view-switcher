@@ -1,5 +1,6 @@
 # express-view-switcher
 
+[![Build Status (Windows)][image-build-windows]][link-build-windows]
 [![Build Status (macOS)][image-build-macos]][link-build-macos]
 [![Build Status (Linux)][image-build-linux]][link-build-linux]
 [![Release][image-release]][link-release]
@@ -180,10 +181,12 @@ MIT License
 
 &copy; 2017 shimataro
 
-[image-build-macos]: https://img.shields.io/travis/com/shimataro/express-view-switcher/master.svg?label=macOS
-[link-build-macos]: https://travis-ci.com/shimataro/express-view-switcher
-[image-build-linux]: https://img.shields.io/travis/com/shimataro/express-view-switcher/master.svg?label=Linux
-[link-build-linux]: https://travis-ci.com/shimataro/express-view-switcher
+[image-build-windows]: https://github.com/shimataro/express-view-switcher/workflows/Windows/badge.svg
+[link-build-windows]: https://github.com/shimataro/express-view-switcher
+[image-build-macos]: https://github.com/shimataro/express-view-switcher/workflows/macOS/badge.svg
+[link-build-macos]: https://github.com/shimataro/express-view-switcher
+[image-build-linux]: https://github.com/shimataro/express-view-switcher/workflows/Linux/badge.svg
+[link-build-linux]: https://github.com/shimataro/express-view-switcher
 [image-release]: https://img.shields.io/github/release/shimataro/express-view-switcher.svg
 [link-release]: https://github.com/shimataro/express-view-switcher/releases
 [image-engine]: https://img.shields.io/node/v/express-view-switcher.svg
