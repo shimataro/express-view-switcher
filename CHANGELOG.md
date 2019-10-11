@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+* Support Node.js v4.0.0 again!
+
 ### Others
 
 * use [GitHub Actions](https://github.com/features/actions) for CI
+* distribute only built files
 
 ## [3.2.0] - 2019-07-21
 
