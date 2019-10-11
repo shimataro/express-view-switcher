@@ -4,7 +4,6 @@
     ["@babel/preset-env", {"targets": {"node": "4.0.0"}, "useBuiltIns": "usage", "corejs": 3}]
   ],
   "plugins": [
-    ["@babel/plugin-proposal-decorators", {"legacy": true}],
     ["add-module-exports"]
   ],
   "env": {
