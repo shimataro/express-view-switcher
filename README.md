@@ -3,6 +3,7 @@
 [![Build Status (Windows)][image-build-windows]][link-build-windows]
 [![Build Status (macOS)][image-build-macos]][link-build-macos]
 [![Build Status (Linux)][image-build-linux]][link-build-linux]
+[![Syntax check][image-syntax-check]][link-syntax-check]
 [![Release][image-release]][link-release]
 [![Node.js version][image-engine]][link-engine]
 [![License][image-license]][link-license]
@@ -187,6 +188,8 @@ MIT License
 [link-build-macos]: https://github.com/shimataro/express-view-switcher
 [image-build-linux]: https://github.com/shimataro/express-view-switcher/workflows/Linux/badge.svg
 [link-build-linux]: https://github.com/shimataro/express-view-switcher
+[image-syntax-check]: https://github.com/shimataro/express-view-switcher/workflows/Syntax%20check/badge.svg
+[link-syntax-check]: https://github.com/shimataro/express-view-switcher
 [image-release]: https://img.shields.io/github/release/shimataro/express-view-switcher.svg
 [link-release]: https://github.com/shimataro/express-view-switcher/releases
 [image-engine]: https://img.shields.io/node/v/express-view-switcher.svg
