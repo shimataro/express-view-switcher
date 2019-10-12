@@ -1,7 +1,7 @@
 {
   "name": "express-view-switcher",
   "description": "View switcher for Express.js",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "author": "shimataro",
   "license": "MIT",
   "repository": {
@@ -15,13 +15,14 @@
     "pug"
   ],
   "main": "./dist/index",
-  "types": "./src/index.d.ts",
+  "types": "./dist/index.d.ts",
   "engines": {
     "node": ">= 4.0.0",
     "npm": ">=2.0.0"
   },
   "scripts": {
     "build": "run-p build:**",
+    "build:dts": "copyfiles --up=1 'src/**/*.d.ts' dist",
     "build:cjs": "npm run build-core",
     "build:esm": "cross-env BABEL_ENV=esm npm run build-core -- --keep-file-extension",
     "build-core": "babel ./src --out-dir ./dist --source-maps",
@@ -33,25 +34,26 @@
     "lint:es": "eslint ./src --ext .mjs",
     "lint:md": "markdownlint . --ignore ./node_modules",
     "lint:yaml": "yamllint .*.yml *.yml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml",
-    "postinstall": "npm run build",
-    "check-updates": "ncu -x npm-check-updates,markdownlint-cli,eslint"
+    "check-updates": "ncu"
   },
   "dependencies": {
-    "@babel/cli": "7.5.5",
-    "@babel/core": "7.5.5",
-    "@babel/preset-env": "7.5.5",
-    "babel-plugin-add-module-exports": "1.0.2",
-    "core-js": "3.1.4",
-    "cross-env": "5.2.0",
-    "npm-run-all": "4.1.5"
+    "@babel/polyfill": "7.6.0",
+    "core-js": "3.2.1"
   },
   "devDependencies": {
-    "@types/express": "4.17.0",
-    "babel-eslint": "10.0.2",
-    "eslint": "5.16.0",
+    "@babel/cli": "7.6.4",
+    "@babel/core": "7.6.4",
+    "@babel/preset-env": "7.6.3",
+    "@types/express": "4.17.1",
+    "babel-eslint": "10.0.3",
+    "babel-plugin-add-module-exports": "1.0.2",
+    "copyfiles": "2.1.1",
+    "cross-env": "6.0.3",
+    "eslint": "6.5.1",
     "eslint-plugin-import": "2.18.2",
-    "markdownlint-cli": "0.15.0",
-    "npm-check-updates": "^2",
+    "markdownlint-cli": "0.18.0",
+    "npm-check-updates": "3.1.24",
+    "npm-run-all": "4.1.5",
     "yaml-lint": "1.2.4"
   }
 }

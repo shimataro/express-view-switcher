@@ -1,7 +1,9 @@
 # express-view-switcher
 
+[![Build Status (Windows)][image-build-windows]][link-build-windows]
 [![Build Status (macOS)][image-build-macos]][link-build-macos]
 [![Build Status (Linux)][image-build-linux]][link-build-linux]
+[![Syntax check][image-syntax-check]][link-syntax-check]
 [![Release][image-release]][link-release]
 [![Node.js version][image-engine]][link-engine]
 [![License][image-license]][link-license]
@@ -86,7 +88,7 @@ app.use(viewSwitcher((req) =>
 ```javascript
 app.use(viewSwitcher((req) =>
 {
-    return [_getLanguageCandidates(req), _getDeviceCandidates(req)];
+    return [getLanguageCandidates(req), getDeviceCandidates(req)];
 }));
 
 /**
@@ -96,7 +98,7 @@ app.use(viewSwitcher((req) =>
  * @param {int} maxLength
  * @return {string}
  */
-function _getRequestHeader(req, name, maxLength = 256)
+function getRequestHeader(req, name, maxLength = 256)
 {
     if(!req.headers.hasOwnProperty(name))
     {
@@ -110,9 +112,9 @@ function _getRequestHeader(req, name, maxLength = 256)
  * @param {Object} req
  * @return {string[]}
  */
-function _getLanguageCandidates(req)
+function getLanguageCandidates(req)
 {
-    const acceptLanguage = _getRequestHeader(req, "accept-language");
+    const acceptLanguage = getRequestHeader(req, "accept-language");
     const languageCandidates = [];
     for(const language of acceptLanguage.split(","))
     {
@@ -130,60 +132,60 @@ function _getLanguageCandidates(req)
  * @param {Object} req
  * @return {string[]}
  */
-function _getDeviceCandidates(req)
+function getDeviceCandidates(req)
 {
     // get device info from UserAgent
-    const userAgent = _getRequestHeader(req, "user-agent");
-    return [_detectDevice(userAgent), "default"];
+    const userAgent = getRequestHeader(req, "user-agent");
+    return [detectDevice(userAgent), "default"];
+}
 
-    /**
-     * detect device from UserAgent
-     * @param {string} userAgent
-     * @return {string}
-     * @private
-     */
-    function _detectDevice(userAgent)
+/**
+ * detect device from UserAgent
+ * @param {string} userAgent
+ * @return {string}
+ * @private
+ */
+function detectDevice(userAgent)
+{
+    if(userAgent.indexOf("iPhone") !== -1)
     {
-        if(userAgent.indexOf("iPhone") !== -1)
+        return "smartphone";
+    }
+    if(userAgent.indexOf("iPod touch") !== -1)
+    {
+        return "smartphone";
+    }
+    if(userAgent.indexOf("iPad") !== -1)
+    {
+        return "tablet";
+    }
+    if(userAgent.indexOf("Android") !== -1)
+    {
+        if(userAgent.indexOf("Mobile") !== -1)
         {
             return "smartphone";
         }
-        if(userAgent.indexOf("iPod touch") !== -1)
-        {
-            return "smartphone";
-        }
-        if(userAgent.indexOf("iPad") !== -1)
+        else
         {
             return "tablet";
         }
-        if(userAgent.indexOf("Android") !== -1)
-        {
-            if(userAgent.indexOf("Mobile") !== -1)
-            {
-                return "smartphone";
-            }
-            else
-            {
-                return "tablet";
-            }
-        }
-        return "default";
     }
+    return "default";
 }
 ```
 
-## License
+## Changelog
 
-MIT License
+See [CHANGELOG.md](CHANGELOG.md).
 
-## Copyright
-
-&copy; 2017 shimataro
-
-[image-build-macos]: https://img.shields.io/travis/com/shimataro/express-view-switcher/master.svg?label=macOS
-[link-build-macos]: https://travis-ci.com/shimataro/express-view-switcher
-[image-build-linux]: https://img.shields.io/travis/com/shimataro/express-view-switcher/master.svg?label=Linux
-[link-build-linux]: https://travis-ci.com/shimataro/express-view-switcher
+[image-build-windows]: https://github.com/shimataro/express-view-switcher/workflows/Windows/badge.svg
+[link-build-windows]: https://github.com/shimataro/express-view-switcher
+[image-build-macos]: https://github.com/shimataro/express-view-switcher/workflows/macOS/badge.svg
+[link-build-macos]: https://github.com/shimataro/express-view-switcher
+[image-build-linux]: https://github.com/shimataro/express-view-switcher/workflows/Linux/badge.svg
+[link-build-linux]: https://github.com/shimataro/express-view-switcher
+[image-syntax-check]: https://github.com/shimataro/express-view-switcher/workflows/Syntax%20check/badge.svg
+[link-syntax-check]: https://github.com/shimataro/express-view-switcher
 [image-release]: https://img.shields.io/github/release/shimataro/express-view-switcher.svg
 [link-release]: https://github.com/shimataro/express-view-switcher/releases
 [image-engine]: https://img.shields.io/node/v/express-view-switcher.svg

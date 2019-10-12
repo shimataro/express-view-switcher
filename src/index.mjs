@@ -2,10 +2,6 @@ export default viewSwitcher;
 
 import path from "path";
 import fs from "fs";
-import util from "util";
-
-// use fs.promises on Node.js v10
-const access = util.promisify(fs.access);
 
 // root directory keys for view engine
 const rootKeys = {
@@ -116,34 +112,21 @@ async function _findViewDirectory(baseDirs, candidatesList, view, ext)
  * @param {string} ext extension
  * @returns {Promise.<boolean>} Yes/No
  */
-async function _viewExists(baseDir, candidateDir, view, ext)
+function _viewExists(baseDir, candidateDir, view, ext)
 {
-	const resolvedView = path.resolve(baseDir, candidateDir, view);
-
-	// search with extension
-	try
+	let resolvedView = path.resolve(baseDir, candidateDir, view);
+	if(!_hasExtension(resolvedView))
 	{
-		await access(`${resolvedView}.${ext}`, fs.R_OK);
-		return true;
-	}
-	catch(err)
-	{
-		// fall through
+		resolvedView += `.${ext}`;
 	}
 
-	// re-search without extension
-	try
+	return new Promise((resolve) =>
 	{
-		await access(resolvedView, fs.R_OK);
-		return true;
-	}
-	catch(err)
-	{
-		// fall through
-	}
-
-	// returns false when no views found
-	return false;
+		fs.access(resolvedView, fs.R_OK, (err) =>
+		{
+			resolve(err === undefined);
+		});
+	});
 }
 
 /**
@@ -184,6 +167,16 @@ function *_generateDirsArray(candidatesList, index)
 			yield [element].concat(remains);
 		}
 	}
+}
+
+/**
+ * path has extension?
+ * @param {string} pathName path name to check
+ * @returns {boolean} Yes/No
+ */
+function _hasExtension(pathName)
+{
+	return path.extname(pathName).length > 0;
 }
 
 /**
