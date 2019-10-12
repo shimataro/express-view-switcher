@@ -20,7 +20,7 @@ function viewSwitcher(candidatesListGenerator, rootKey = null)
 	{
 		const {app} = req;
 		const engine = app.get("view engine");
-		const baseDirs = _getBaseDirs(app);
+		const baseDirs = getBaseDirs(app);
 
 		// base directory key name to be set in res.locals
 		let rootKey_ = rootKey;
@@ -34,7 +34,7 @@ function viewSwitcher(candidatesListGenerator, rootKey = null)
 		res.render = (view, ...args) =>
 		{
 			const candidatesList = candidatesListGenerator(req);
-			_findViewDirectory(baseDirs, candidatesList, view, engine)
+			findViewDirectory(baseDirs, candidatesList, view, engine)
 				.then((result) =>
 				{
 					if(result === null)
@@ -65,7 +65,7 @@ function viewSwitcher(candidatesListGenerator, rootKey = null)
  * @param {ExpressApp} app application
  * @returns {TypeBaseDirectories} directories
  */
-function _getBaseDirs(app)
+function getBaseDirs(app)
 {
 	const views = app.get("views");
 	if(Array.isArray(views))
@@ -86,14 +86,14 @@ function _getBaseDirs(app)
  * @param {string} ext extension
  * @returns {Promise.<TypeViewDirectory | null>} directories
  */
-async function _findViewDirectory(baseDirs, candidatesList, view, ext)
+async function findViewDirectory(baseDirs, candidatesList, view, ext)
 {
 	for(const baseDir of baseDirs)
 	{
-		for(const candidateDir of _generateDirs(candidatesList))
+		for(const candidateDir of generateDirs(candidatesList))
 		{
 			// return view directory if view file exists
-			if(await _viewExists(baseDir, candidateDir, view, ext))
+			if(await viewExists(baseDir, candidateDir, view, ext))
 			{
 				return [baseDir, candidateDir];
 			}
@@ -112,10 +112,10 @@ async function _findViewDirectory(baseDirs, candidatesList, view, ext)
  * @param {string} ext extension
  * @returns {Promise.<boolean>} Yes/No
  */
-function _viewExists(baseDir, candidateDir, view, ext)
+function viewExists(baseDir, candidateDir, view, ext)
 {
 	let resolvedView = path.resolve(baseDir, candidateDir, view);
-	if(!_hasExtension(resolvedView))
+	if(!hasExtension(resolvedView))
 	{
 		resolvedView += `.${ext}`;
 	}
@@ -136,9 +136,9 @@ function _viewExists(baseDir, candidateDir, view, ext)
  * @yield {string} directories
  * @returns {void} no values
  */
-function *_generateDirs(candidatesList)
+function *generateDirs(candidatesList)
 {
-	for(const pathArray of _generateDirsArray(candidatesList, 0))
+	for(const pathArray of generateDirsArray(candidatesList, 0))
 	{
 		yield pathArray.join(path.sep);
 	}
@@ -152,7 +152,7 @@ function *_generateDirs(candidatesList)
  * @yield {Candidates} candidates
  * @returns {void} no values
  */
-function *_generateDirsArray(candidatesList, index)
+function *generateDirsArray(candidatesList, index)
 {
 	if(index >= candidatesList.length)
 	{
@@ -162,7 +162,7 @@ function *_generateDirsArray(candidatesList, index)
 
 	for(const element of candidatesList[index])
 	{
-		for(const remains of _generateDirsArray(candidatesList, index + 1))
+		for(const remains of generateDirsArray(candidatesList, index + 1))
 		{
 			yield [element].concat(remains);
 		}
@@ -174,7 +174,7 @@ function *_generateDirsArray(candidatesList, index)
  * @param {string} pathName path name to check
  * @returns {boolean} Yes/No
  */
-function _hasExtension(pathName)
+function hasExtension(pathName)
 {
 	return path.extname(pathName).length > 0;
 }
