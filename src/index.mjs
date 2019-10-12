@@ -124,7 +124,7 @@ function _viewExists(baseDir, candidateDir, view, ext)
 	{
 		fs.access(resolvedView, fs.R_OK, (err) =>
 		{
-			resolve(err === undefined);
+			resolve(err === null);
 		});
 	});
 }
