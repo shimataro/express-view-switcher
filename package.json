@@ -37,7 +37,6 @@
     "check-updates": "ncu"
   },
   "dependencies": {
-    "@babel/polyfill": "7.6.0",
     "core-js": "3.2.1"
   },
   "devDependencies": {
