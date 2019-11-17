@@ -1,7 +1,7 @@
 {
   "name": "express-view-switcher",
   "description": "View switcher for Express.js",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "author": "shimataro",
   "license": "MIT",
   "repository": {
@@ -37,22 +37,21 @@
     "check-updates": "ncu"
   },
   "dependencies": {
-    "@babel/polyfill": "7.6.0",
-    "core-js": "3.2.1"
+    "core-js": "3.4.1"
   },
   "devDependencies": {
-    "@babel/cli": "7.6.4",
-    "@babel/core": "7.6.4",
-    "@babel/preset-env": "7.6.3",
-    "@types/express": "4.17.1",
+    "@babel/cli": "7.7.0",
+    "@babel/core": "7.7.2",
+    "@babel/preset-env": "7.7.1",
+    "@types/express": "4.17.2",
     "babel-eslint": "10.0.3",
     "babel-plugin-add-module-exports": "1.0.2",
     "copyfiles": "2.1.1",
     "cross-env": "6.0.3",
-    "eslint": "6.5.1",
+    "eslint": "6.6.0",
     "eslint-plugin-import": "2.18.2",
-    "markdownlint-cli": "0.18.0",
-    "npm-check-updates": "3.1.24",
+    "markdownlint-cli": "0.19.0",
+    "npm-check-updates": "3.2.1",
     "npm-run-all": "4.1.5",
     "yaml-lint": "1.2.4"
   }

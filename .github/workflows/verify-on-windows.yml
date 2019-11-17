@@ -5,7 +5,7 @@ name: Windows
 jobs:
   verify:
     name: Verify on Node.js v${{ matrix.nodejs }}
-    runs-on: Windows-latest
+    runs-on: windows-latest
     strategy:
       matrix:
         nodejs:
@@ -22,9 +22,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs }}
-    - name: Update global packages
-      run: npm i -g node-gyp
+    - name: Output versions
+      run: |
+        node -v
+        npm -v
     - name: Install dependencies
-      run: npm i
+      run: |
+        npm ci
+        if (!$?) {
+          npm i
+        }
     - name: Verify
       run: npm run verify
