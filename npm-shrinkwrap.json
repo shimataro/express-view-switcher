@@ -1156,6 +1156,15 @@
         "object.assign": "^4.1.0"
       }
     },
+    "babel-plugin-extension-resolver": {
+      "version": "1.0.7",
+      "resolved": "https://registry.npmjs.org/babel-plugin-extension-resolver/-/babel-plugin-extension-resolver-1.0.7.tgz",
+      "integrity": "sha512-rf0uw0C6fMyXgUnV0lVkXR+uFzu7LBcBkJC0Ew2nsVEEiSOQ/Co8NhTzhVgsvMAxxFBV+nx+yBR4D1wnYfFsVA==",
+      "dev": true,
+      "requires": {
+        "resolve": "1.13.1"
+      }
+    },
     "balanced-match": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.0.tgz",
