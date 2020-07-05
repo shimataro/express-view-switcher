@@ -4,19 +4,17 @@ on: push
 name: macOS
 jobs:
   verify:
-    name: Verify on Node.js v${{ matrix.nodejs }}
+    name: Verify
     runs-on: macos-latest
     strategy:
       matrix:
         nodejs:
-        - 8
-        - 10
         - 12
       fail-fast: false
     steps:
     - name: Checkout source codes
       uses: actions/checkout@v1
-    - name: Install Node.js
+    - name: Install Node.js for build
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.nodejs }}
@@ -25,6 +23,8 @@ jobs:
         node -v
         npm -v
     - name: Install dependencies
-      run: npm ci || npm i
+      run: npm ci
+    - name: Build
+      run: npm run build
     - name: Verify
       run: npm run verify
