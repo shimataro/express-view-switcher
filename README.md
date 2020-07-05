@@ -6,6 +6,7 @@
 [![Syntax check][image-syntax-check]][link-syntax-check]
 [![Release][image-release]][link-release]
 [![Node.js version][image-engine]][link-engine]
+[![Types][image-types]][link-types]
 [![License][image-license]][link-license]
 
 switch the view root directory per request
@@ -190,5 +191,7 @@ See [CHANGELOG.md](CHANGELOG.md).
 [link-release]: https://github.com/shimataro/express-view-switcher/releases
 [image-engine]: https://img.shields.io/node/v/express-view-switcher.svg
 [link-engine]: https://nodejs.org/
+[image-types]: https://img.shields.io/npm/types/express-view-switcher.svg
+[link-types]: https://github.com/shimataro/express-view-switcher
 [image-license]: https://img.shields.io/github/license/shimataro/express-view-switcher.svg
 [link-license]: ./LICENSE
