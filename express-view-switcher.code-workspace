@@ -1,10 +1,11 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "deno.enable": false,
     "eslint.enable": true,
     "json.format.enable": true,
     "javascript.format.enable": true,

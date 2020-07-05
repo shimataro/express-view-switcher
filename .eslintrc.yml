@@ -2,13 +2,16 @@
 env: # https://eslint.org/docs/user-guide/configuring#specifying-environments
   es6: true
   node: true
-  jest: true
-extends: eslint:recommended
+extends:
+- eslint:recommended
+- plugin:@typescript-eslint/eslint-recommended
+- plugin:@typescript-eslint/recommended
 plugins:
-- import
-parser: babel-eslint
+- "@typescript-eslint"
+parser: "@typescript-eslint/parser"
 parserOptions:
   sourceType: module
+  project: ./tsconfig.json
 rules: # https://eslint.org/docs/rules/
   accessor-pairs: error
   array-bracket-newline: error
@@ -56,7 +59,7 @@ rules: # https://eslint.org/docs/rules/
   - property
   dot-notation:
   - error
-  - allowKeywords: true
+  - allowPattern: "^_"
   eol-last: error
   eqeqeq: error
   for-direction: error
@@ -68,7 +71,9 @@ rules: # https://eslint.org/docs/rules/
   func-style:
   - error
   - declaration
-  function-paren-newline: error
+  function-paren-newline:
+  - error
+  - multiline-arguments
   generator-star-spacing: error
   getter-return: error
   global-require: error
@@ -87,7 +92,21 @@ rules: # https://eslint.org/docs/rules/
   init-declarations: error
   jsx-quotes: error
   key-spacing: error
-  keyword-spacing: 'off'
+  keyword-spacing:
+  - error
+  - overrides:
+      catch:
+        after: false
+      for:
+        after: false
+      if:
+        after: false
+      switch:
+        after: false
+      while:
+        after: false
+      with:
+        after: false
   line-comment-position: 'off'
   linebreak-style:
   - error
@@ -97,6 +116,7 @@ rules: # https://eslint.org/docs/rules/
   lines-between-class-members:
   - error
   - always
+  - exceptAfterSingleLine: true
   max-depth: error
   max-len: 'off'
   max-lines: 'off'
@@ -108,14 +128,14 @@ rules: # https://eslint.org/docs/rules/
   - error
   - separate-lines
   multiline-ternary: error
-  new-cap: 'off'
+  new-cap: error
   new-parens: error
   newline-after-var: 'off'
   newline-before-return: 'off'
   no-alert: error
   no-array-constructor: error
   no-await-in-loop: 'off'
-  no-bitwise: 'off'
+  no-bitwise: error
   no-buffer-constructor: error
   no-caller: error
   no-catch-shadow: error
@@ -131,6 +151,7 @@ rules: # https://eslint.org/docs/rules/
   no-extra-bind: error
   no-extra-label: error
   no-extra-parens: error
+  no-extra-semi: error
   no-floating-decimal: error
   no-implicit-coercion: error
   no-implicit-globals: error
@@ -240,7 +261,10 @@ rules: # https://eslint.org/docs/rules/
   semi-style:
   - error
   - last
-  sort-imports: 'off'
+  sort-imports:
+  - error
+  - ignoreCase: false
+    ignoreDeclarationSort: true
   sort-keys: 'off'
   sort-vars: error
   space-before-blocks: error
@@ -263,7 +287,17 @@ rules: # https://eslint.org/docs/rules/
   unicode-bom:
   - error
   - never
-  valid-jsdoc: error
+  valid-jsdoc:
+  - error
+  - prefer:
+      arg: param
+      argument: param
+      return: returns
+      yield: yields
+      exception: throws
+    requireReturn: false
+    requireParamType: false
+    requireReturnType: false
   vars-on-top: error
   wrap-iife: error
   wrap-regex: error
@@ -271,8 +305,11 @@ rules: # https://eslint.org/docs/rules/
   yoda:
   - error
   - never
-  import/extensions:
+
+  # @typescript-eslint plugin
+  "@typescript-eslint/ban-ts-ignore": 'off'
+  "@typescript-eslint/no-empty-interface": 'off'
+  "@typescript-eslint/no-use-before-define":
   - error
-  - never
-  import/no-unresolved:
-  - error
+  - functions: false
+  "@typescript-eslint/strict-boolean-expressions": error

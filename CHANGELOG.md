@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.4.0] - 2020-07-06
+
+### Others
+
+* Support TypeScript
+
 ## [3.3.3] - 2019-11-17
 
 ### Others
@@ -96,7 +102,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * first release!
 
-[Unreleased]: https://github.com/shimataro/express-view-switcher/compare/v3.3.3...HEAD
+[Unreleased]: https://github.com/shimataro/express-view-switcher/compare/v3.4.0...HEAD
+[3.4.0]: https://github.com/shimataro/express-view-switcher/compare/v3.3.3...v3.4.0
 [3.3.3]: https://github.com/shimataro/express-view-switcher/compare/v3.3.2...v3.3.3
 [3.3.2]: https://github.com/shimataro/express-view-switcher/compare/v3.3.1...v3.3.2
 [3.3.1]: https://github.com/shimataro/express-view-switcher/compare/v3.3.0...v3.3.1

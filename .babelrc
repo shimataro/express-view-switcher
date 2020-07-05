@@ -1,15 +1,17 @@
 {
-  "comments": false,
-  "presets": [
-    ["@babel/preset-env", {"targets": {"node": "4.0.0"}, "useBuiltIns": "usage", "corejs": 3, "exclude": ["transform-regenerator"]}]
-  ],
-  "plugins": [
-    ["add-module-exports"]
-  ],
   "env": {
+    "cjs": {
+      "plugins": [
+        ["add-module-exports", {
+          "addDefaultProperty": true
+        }]
+      ]
+    },
     "esm": {
-      "presets": [
-        ["@babel/preset-env", {"targets": {"node": "8.5.0"}, "useBuiltIns": "usage", "corejs": 3, "exclude": ["transform-regenerator"], "modules": false}]
+      "plugins": [
+        ["module-extension-resolver", {
+          "dstExtension": ".mjs"
+        }]
       ]
     }
   }

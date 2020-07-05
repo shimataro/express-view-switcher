@@ -1,7 +1,7 @@
 {
   "name": "express-view-switcher",
   "description": "View switcher for Express.js",
-  "version": "3.3.3",
+  "version": "3.4.0",
   "author": "shimataro",
   "license": "MIT",
   "repository": {
@@ -17,42 +17,39 @@
   "main": "./dist/index",
   "types": "./dist/index.d.ts",
   "engines": {
-    "node": ">= 4.0.0",
+    "node": ">=4.0.0",
     "npm": ">=2.0.0"
   },
   "scripts": {
-    "build": "run-p build:**",
-    "build:dts": "copyfiles --up=1 'src/**/*.d.ts' dist",
-    "build:cjs": "npm run build-core",
-    "build:esm": "cross-env BABEL_ENV=esm npm run build-core -- --keep-file-extension",
-    "build-core": "babel ./src --out-dir ./dist --source-maps",
-    "watch": "run-p watch:**",
-    "watch:cjs": "npm run build-core -- --watch",
-    "watch:esm": "cross-env BABEL_ENV=esm npm run build-core -- --keep-file-extension --watch",
+    "build": "run-s build:**",
+    "build:1-esm": "run-s build:1-esm:*",
+    "build:1-esm:1-tsc": "tsc -p tsconfig.esm.json",
+    "build:1-esm:2-babel": "cross-env BABEL_ENV=esm babel ./dist --out-dir ./dist --out-file-extension .mjs",
+    "build:2-cjs": "run-s build:2-cjs:*",
+    "build:2-cjs:1-tsc": "tsc -p tsconfig.cjs.json",
+    "build:2-cjs:2-babel": "cross-env BABEL_ENV=cjs babel ./dist --out-dir ./dist --extensions .js",
     "verify": "run-p lint",
     "lint": "run-p lint:*",
-    "lint:es": "eslint ./src --ext .mjs",
+    "lint:ts": "eslint ./src ./examples --ext .ts",
     "lint:md": "markdownlint . --ignore ./node_modules",
     "lint:yaml": "yamllint .*.yml *.yml --ignore=node_modules/**/*.yml --ignore=node_modules/**/*.yaml",
     "check-updates": "ncu"
   },
-  "dependencies": {
-    "core-js": "3.4.1"
-  },
   "devDependencies": {
-    "@babel/cli": "7.7.0",
-    "@babel/core": "7.7.2",
-    "@babel/preset-env": "7.7.1",
-    "@types/express": "4.17.2",
-    "babel-eslint": "10.0.3",
+    "@babel/cli": "7.10.4",
+    "@babel/core": "7.10.4",
+    "@types/express": "4.17.6",
+    "@types/node": "14.0.14",
+    "@typescript-eslint/eslint-plugin": "3.5.0",
+    "@typescript-eslint/parser": "3.5.0",
     "babel-plugin-add-module-exports": "1.0.2",
-    "copyfiles": "2.1.1",
-    "cross-env": "6.0.3",
-    "eslint": "6.6.0",
-    "eslint-plugin-import": "2.18.2",
-    "markdownlint-cli": "0.19.0",
-    "npm-check-updates": "3.2.1",
+    "babel-plugin-module-extension-resolver": "1.0.0-rc.1",
+    "cross-env": "7.0.2",
+    "eslint": "7.4.0",
+    "markdownlint-cli": "0.23.2",
+    "npm-check-updates": "7.0.1",
     "npm-run-all": "4.1.5",
+    "typescript": "3.9.6",
     "yaml-lint": "1.2.4"
   }
 }
